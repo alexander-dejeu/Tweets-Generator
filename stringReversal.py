@@ -18,6 +18,9 @@ import sys
 
 
 def reverse_word(word):
+    '''This function
+    :return the orignal word reversed
+    '''
     reversed_word = ""
     for i in range(0, len(word)):
         reversed_word += word[len(word) - 1 - i]
