@@ -33,11 +33,13 @@ def generate_random_strings():
     dictionary_file.close()
 
 
+
 def main():
-    start_time = datetime.now()
+    base_start_time = datetime.now()
     generate_random_strings()
-    end_time = datetime.now()
-    run_time = end_time - start_time
-    print run_time
+    base_end_time = datetime.now()
+    base_run_time = base_end_time - base_start_time
+    print base_run_time
+
 
 main()
