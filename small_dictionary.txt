@@ -1,5 +1,8 @@
 Alex
 Box
+Boy
+Bot
+Bat
 Cat
 Dog
 Egg
