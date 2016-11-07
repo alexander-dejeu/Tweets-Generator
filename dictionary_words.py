@@ -15,7 +15,7 @@ def get_random_int():
 
 
 # Open the dictionary
-dictionary_file = open('small_dictionary.txt', 'r')
+dictionary_file = open('/usr/share/dict/words', 'r')
 all_words = dictionary_file.read().splitlines()
 
 user_argument_count = len(sys.argv)
