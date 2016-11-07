@@ -9,21 +9,35 @@
 
 import sys
 import random
-
-def get_random_int():
-    return random.randint(0, len(all_words)-1)
+from datetime import datetime
 
 
-# Open the dictionary
-dictionary_file = open('/usr/share/dict/words', 'r')
-all_words = dictionary_file.read().splitlines()
+def get_random_int(data_set):
+    return random.randint(0, len(data_set)-1)
 
-user_argument_count = len(sys.argv)
-if user_argument_count == 1:
-    print 'Please enter another argument with the ammount of words to print'
-else:
-    amount_of_random_words = int(sys.argv[1])
-    for i in range(0, amount_of_random_words):
-        print all_words[get_random_int()]
-# Done with the dictionary - close it
-dictionary_file.close()
+
+def generate_random_strings():
+    # Open the dictionary
+    dictionary_file = open('/usr/share/dict/words', 'r')
+    all_words = dictionary_file.read().splitlines()
+
+    user_argument_count = len(sys.argv)
+    if user_argument_count == 1:
+        print 'Error: Amount of words to generate not provided'
+    else:
+        amount_of_random_words = int(sys.argv[1])
+        for i in range(0, amount_of_random_words):
+            print all_words[get_random_int(all_words)]
+
+    # Done with the dictionary - close it
+    dictionary_file.close()
+
+
+def main():
+    start_time = datetime.now()
+    generate_random_strings()
+    end_time = datetime.now()
+    run_time = end_time - start_time
+    print run_time
+
+main()
