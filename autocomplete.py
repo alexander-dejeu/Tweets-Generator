@@ -20,7 +20,6 @@ def make_dictionary_trie():
 
     # Done with the dictionary - close it
     dictionary_file.close()
-    print trie_root
     return trie_root
 
 
@@ -38,6 +37,34 @@ def search_trie_for(trie, prefix):
             return False
 
 
+def autocomplete_for(trie, prefix):
+    current_node = trie
+    for letter in prefix:
+        if letter in current_node:
+            current_node = current_node[letter]
+        else:
+            return False
+    print current_node
+    print_trie(current_node, prefix)
+
+
+def print_trie(trie, prefix):
+    current_node = trie
+    word = prefix
+    for key in current_node:
+        if key == _end:
+            print 'we reached the end'
+            print str(word)
+        else:
+            word = prefix + key
+            print_trie(current_node[key], word)
+            # bigger_word = word + key
+            # print_trie(node, bigger_word)
+        # print 'node:', node
+
+    # for node in current_node:
+
+
 def main():
     base_start_time = datetime.now()
     tree = make_dictionary_trie()
@@ -50,6 +77,7 @@ def main():
         print 'Error: word not provided'
     else:
         user_autocomplete_word = str(sys.argv[1])
-        search_trie_for(tree, user_autocomplete_word)
+        print search_trie_for(tree, user_autocomplete_word)
+        print autocomplete_for(tree, user_autocomplete_word)
 
 main()
