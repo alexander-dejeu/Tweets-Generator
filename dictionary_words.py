@@ -12,6 +12,9 @@ import random
 from datetime import datetime
 
 
+# word_list = words_file.reade().strip().split('\n')
+# words_file.readlines()
+
 def get_random_int(data_set):
     return random.randint(0, len(data_set)-1)
 
@@ -20,6 +23,7 @@ def generate_random_strings():
     # Open the dictionary
     dictionary_file = open('/usr/share/dict/words', 'r')
     all_words = dictionary_file.read().splitlines()
+    #print all_words
 
     user_argument_count = len(sys.argv)
     if user_argument_count == 1:
@@ -31,7 +35,6 @@ def generate_random_strings():
 
     # Done with the dictionary - close it
     dictionary_file.close()
-
 
 
 def main():
