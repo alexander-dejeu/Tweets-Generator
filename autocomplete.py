@@ -7,7 +7,7 @@ _end = '_end_'
 def make_dictionary_trie():
     # Open the dictionary
     dictionary_file = open('/usr/share/dict/words', 'r')
-    #dictionary_file = open('small_dictionary.txt', 'r')
+    # Dictionary_file = open('small_dictionary.txt', 'r')
     all_words = dictionary_file.read().splitlines()
 
     trie_root = dict()

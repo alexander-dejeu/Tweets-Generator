@@ -15,6 +15,7 @@ from datetime import datetime
 # word_list = words_file.reade().strip().split('\n')
 # words_file.readlines()
 
+
 def get_random_int(data_set):
     return random.randint(0, len(data_set)-1)
 
@@ -23,16 +24,19 @@ def generate_random_strings():
     # Open the dictionary
     dictionary_file = open('/usr/share/dict/words', 'r')
     all_words = dictionary_file.read().splitlines()
-    #print all_words
 
     user_argument_count = len(sys.argv)
+    result_sentence = []
     if user_argument_count == 1:
         print 'Error: Amount of words to generate not provided'
     else:
         amount_of_random_words = int(sys.argv[1])
         for i in range(0, amount_of_random_words):
-            print all_words[get_random_int(all_words)]
+            random_int = get_random_int(all_words)
+            result_sentence.append(all_words[random_int])
 
+
+    print ' '.join(result_sentence) + '.'
     # Done with the dictionary - close it
     dictionary_file.close()
 
