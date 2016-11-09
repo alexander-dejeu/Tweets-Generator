@@ -1,5 +1,25 @@
 import sys
+import random
 
+
+def return_random_word(histogram):
+    # Another way:  Should test: random.choice(histogram.keys())
+    random_key = random.sample(histogram, 1)
+    return random_key[0]
+
+
+def tuple_histogram(fime_name):
+    # NOT WORKING
+    data_file = open(file_name, 'r')
+    words_list = data_file.read().split()
+    for word in words_list:
+        word = word.decode('utf-8').lower().encode('utf-8')
+        print word
+        print zip(word_list)
+    histogram = list()
+    for word in word_list:
+        if word in histogram:
+            print 'done'
 
 def histogram(file_name):
     '''
@@ -12,7 +32,7 @@ def histogram(file_name):
     words_list = data_file.read().split()
     for word in words_list:
         word = word.decode('utf-8').lower().encode('utf-8')
-        print word
+        # print word
 
     histogram = dict()
 
@@ -42,11 +62,13 @@ def frequency(histogram, word):
     return histogram[word]
 
 
+
 def main():
     file_name = 'steve_jobs_speech.txt'
     histogram_data = histogram(file_name)
-    print unique_words(histogram_data)
-    print frequency(histogram_data, 'all')
+    print return_random_word(histogram_data)
+    # print unique_words(histogram_data)
+    # print frequency(histogram_data, 'all')
 
 
 main()
