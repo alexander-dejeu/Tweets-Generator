@@ -1,5 +1,6 @@
 import sys
 import random
+from operator import itemgetter
 
 
 def return_random_word(histogram):
@@ -15,7 +16,14 @@ def get_token_count(histogram):
     return sum
 
 
-def binary_search(histogram, histogram_keys, key_count, position):
+def get_token_count_tuple(histogram):
+    sum = 0
+    for i in range(0, len(histogram)):
+        sum += histogram[i][1]
+    return sum
+
+
+def binary_search(histogram, histogram_keys, target):
     get_total_token_count_to_point = 0
     # if(histogram[histogram_keys[key_count/2] ==  )
 
@@ -28,20 +36,60 @@ def test_weighted_random_word(histogram, times):
             results[result] += 1
         else:
             results[result] = 1
-    print results
+    # Organize results to display most common first
+    results_tuple = results.items()
+    # Slower version according to SO
+    # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
+    sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
+
+    print sorted_results
+
+
+def test_weighted_random_word_tuple(histogram, times):
+    results = dict()
+    for i in range (0, times):
+        result = weighted_random_word_tuple(histogram)
+        if result in results:
+            results[result] += 1
+        else:
+            results[result] = 1
+    # Organize results to display most common first
+    results_tuple = results.items()
+    # Slower version according to SO
+    # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
+    sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
+
+    print sorted_results
+
+
+def weighted_random_word_tuple(histogram):
+    # Step 1: Get total count of all words in histogram
+    # print histogram
+    token_count = get_token_count_tuple(histogram)
+    type_count = len(histogram)
+    # Step 2: Generate random number between 0 and total count - 1
+    random_int = random.randint(0, token_count-1)
+    index = 0
+    # print 'the random index is:', random_int
+    for i in range(0, type_count):
+        index += histogram[i][1]
+        # print index
+        if(index > random_int):
+            # print list_of_keys[i]
+            return histogram[i][0]
 
 
 def return_weighted_random_word(histogram):
     # Step 1: Get total count of all words in histogram
     # print histogram
     token_count = get_token_count(histogram)
-    key_count = len(histogram.keys())
+    type_count = len(histogram.keys())
     # Step 2: Generate random number between 0 and total count - 1
     random_int = random.randint(0, token_count-1)
     index = 0
     list_of_keys = histogram.keys()
     # print 'the random index is:', random_int
-    for i in range(0, len(histogram)):
+    for i in range(0, type_count):
         index += histogram[list_of_keys[i]]
         # print index
         if(index > random_int):
@@ -51,22 +99,21 @@ def return_weighted_random_word(histogram):
     # Here is where I can use a binary search?  Start by going to the half way
     # of all dictionary keys...Then get sum from all the keys previously and
     # see if > or < than the random value?
+    # sorted_list_of_keys
+    # return binary_search(histogram, list_of_keys, random_int)
 
 
+def tuple_histogram(file_name):
+    dict_historgram = histogram(file_name)
+    print 'dict_historgram:', dict_historgram
+    tuple_histogram = dict_historgram.items()
+    print tuple_histogram
+    return tuple_histogram
 
 
-def tuple_histogram(fime_name):
-    # NOT WORKING
-    data_file = open(file_name, 'r')
-    words_list = data_file.read().split()
-    for word in words_list:
-        word = word.decode('utf-8').lower().encode('utf-8')
-        print word
-        print zip(word_list)
-    histogram = list()
-    for word in word_list:
-        if word in histogram:
-            print 'done'
+def tuple_histogram_sorted(file_name):
+    tup_histogram = tuple_histogram(file_name)
+    return sorted(tup_histogram, key=itemgetter(1), reverse=True)
 
 def histogram(file_name):
     '''
@@ -109,14 +156,14 @@ def frequency(histogram, word):
     return histogram[word]
 
 
-
 def main():
     file_name = 'small_text_sample.txt'
-    histogram_data = histogram(file_name)
-    print return_random_word(histogram_data)
+    histogram_data = tuple_histogram_sorted(file_name)
+    print histogram_data
+    # print return_random_word(histogram_data)
 
-    return_weighted_random_word(histogram_data)
-    test_weighted_random_word(histogram_data, 1000000)
+    # print weighted_random_word_tuple(histogram_data)
+    test_weighted_random_word_tuple(histogram_data, 1000)
     # print unique_words(histogram_data)
     # print frequency(histogram_data, 'all')
 
