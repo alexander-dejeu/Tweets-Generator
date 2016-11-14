@@ -236,7 +236,7 @@ def random_sentence():
     file_name = 'small_text_sample.txt'
     histogram_data = tuple_histogram_sorted(file_name)
     return weighted_random_word_tuple(histogram_data)
-    
+    #this is a commit.
 
 
 def main():
@@ -251,4 +251,5 @@ def main():
     # print frequency(histogram_data, 'all')
 
 
-main()
+if __name__ == '__main__':
+    # main()
