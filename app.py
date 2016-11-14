@@ -1,5 +1,5 @@
 from flask import Flask
-import OS
+import os
 import word_frequency
 
 app = Flask(__name__)
