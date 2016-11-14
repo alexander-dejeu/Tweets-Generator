@@ -226,6 +226,19 @@ def binary_histogram(file_name):
     return sorted_historgram
 
 
+def random_word():
+    file_name = 'small_text_sample.txt'
+    histogram_data = tuple_histogram_sorted(file_name)
+    return weighted_random_word_tuple(histogram_data)
+
+
+def random_sentence():
+    file_name = 'small_text_sample.txt'
+    histogram_data = tuple_histogram_sorted(file_name)
+    return weighted_random_word_tuple(histogram_data)
+    
+
+
 def main():
     file_name = 'small_text_sample.txt'
     histogram_data = binary_histogram(file_name)
