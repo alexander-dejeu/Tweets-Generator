@@ -1,4 +1,4 @@
-#!/Users/Alex/Documents/MakeSchool/Product Academy/Classes/Tweet Generator/MyTweetGenerator/venv/bin/python
+#!/Users/Alex/Documents/MakeSchool/ProductAcademy/Classes/TweetGenerator/MyTweetGenerator/venv/bin/python
 
 import sys
 import getopt

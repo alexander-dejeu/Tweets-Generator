@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/Alex/Documents/MakeSchool/Product Academy/Classes/Tweet Generator/MyTweetGenerator/venv"
+VIRTUAL_ENV="/Users/Alex/Documents/MakeSchool/ProductAcademy/Classes/TweetGenerator/MyTweetGenerator/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

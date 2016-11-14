@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/Alex/Documents/MakeSchool/Product Academy/Classes/Tweet Generator/MyTweetGenerator/venv"
+set -gx VIRTUAL_ENV "/Users/Alex/Documents/MakeSchool/ProductAcademy/Classes/TweetGenerator/MyTweetGenerator/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
