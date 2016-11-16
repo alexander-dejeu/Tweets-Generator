@@ -15,9 +15,9 @@ def unique_words(histogram):
 
 def frequency(histogram, word):
     '''
-    A function that takes a word and histogram argument and returns the number of
-    times that word appears in a text. For example, when given the word "mystery"
-    and the Holmes histogram, it will return the integer 20.
+    A function that takes a word and histogram argument and returns the number
+    of times that word appears in a text. For example, when given the word
+    "mystery" and the Holmes histogram, it will return the integer 20.
     '''
     return histogram[word]
 
@@ -123,9 +123,9 @@ def weighted_random_word_tuple(histogram):
 # *************** TUPLE HISTOGRAM *************** #
 def tuple_histogram(file_name):
     dict_historgram = histogram(file_name)
-    print 'dict_historgram:', dict_historgram
+    # print 'dict_historgram:', dict_historgram
     tuple_histogram = dict_historgram.items()
-    print tuple_histogram
+    # print tuple_histogram
     return tuple_histogram
 
 
@@ -158,24 +158,19 @@ def binary_search(histogram, key_count, current_index, target):
     # Alex Dog Charlie Bob
     #  3    6     8    9
     if current_index == 0:
-        print '0,0 ', histogram[0][0]
-        word1 = histogram[0][0]
-        return word1
+        return histogram[0][0]
 
     lower_bound = histogram[current_index-1][1]
 
     if histogram[current_index][1] >= target and lower_bound < target:
-        print 'found the word!!'
         word = histogram[current_index][0]
-        print 'word: ', word
-        print  histogram[current_index][0]
         return word
     elif histogram[current_index][1] < target:
         new_index = current_index + (key_count - current_index)/2
-        binary_search(histogram, key_count, new_index, target)
+        return binary_search(histogram, key_count, new_index, target)
     elif histogram[current_index][1] > target:
         new_index = current_index - (key_count - current_index)/2
-        binary_search(histogram, key_count, new_index, target)
+        return binary_search(histogram, key_count, new_index, target)
     else:
         print 'didnt account for something lamo'
 
@@ -198,10 +193,8 @@ def binary_search_random_word_tuple(histogram):
 # *************** BINARY TUPLE HISTOGRAM TESTS *************** #
 def test_binary_search(histogram, times):
     results = dict()
-    print 'the passed in histo is: ', histogram
     for i in range(0, times):
         result = binary_search_random_word_tuple(histogram)
-        print 'result: ', result
         if result in results:
             results[result] += 1
         else:
@@ -236,17 +229,16 @@ def random_sentence():
     file_name = 'small_text_sample.txt'
     histogram_data = tuple_histogram_sorted(file_name)
     return weighted_random_word_tuple(histogram_data)
-    #this is a commit.
 
 
 def main():
     file_name = 'small_text_sample.txt'
     histogram_data = binary_histogram(file_name)
-    print histogram_data
+    # print histogram_data
     # print return_random_word(histogram_data)
 
     # print weighted_random_word_tuple(histogram_data)
-    test_binary_search(histogram_data, 10)
+    test_binary_search(histogram_data, 10000)
     # print unique_words(histogram_data)
     # print frequency(histogram_data, 'all')
 
