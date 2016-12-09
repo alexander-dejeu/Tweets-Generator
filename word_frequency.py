@@ -253,17 +253,20 @@ def random_word():
 
 
 def random_sentence():
-    file_name = 'small_text_sample.txt'
+    file_name = 'SiliconValley.txt'
     histogram_data = tuple_histogram_sorted(file_name)
-    return weighted_random_word_tuple(histogram_data)
+    sentence = []
+    for i in range(0, 20):
+        sentence.append(weighted_random_word_tuple(histogram_data))
 
+    return ' '.join(sentence)
 
 def main():
     file_name = 'small_text_sample.txt'
     histogram_data = binary_histogram(file_name)
     # print histogram_data
     # print return_random_word(histogram_data)
-
+    random_sentence()
     # print weighted_random_word_tuple(histogram_data)
     test_binary_search(histogram_data, 10000)
     # print unique_words(histogram_data)

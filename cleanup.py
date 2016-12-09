@@ -1,6 +1,7 @@
 import sys
 import re
 
+
 def main():
     user_argument_count = len(sys.argv)
     if user_argument_count == 1:

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import os
 import word_frequency
 
@@ -6,9 +6,10 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    word = word_frequency.random_word()
-    return word
+def home():
+    word = word_frequency.random_sentence()
+    return render_template('layout.html', name=word)
+    # return word
 
 
 if __name__ == '__main__':
