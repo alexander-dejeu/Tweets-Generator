@@ -261,12 +261,20 @@ def random_sentence():
 
     return ' '.join(sentence)
 
+def random_actor():
+    file_name = 'SiliconValley_Actors.txt'
+    data_file = open(file_name, 'r')
+    actor_list = data_file.read().split('\n')
+    random_actor = actor_list[random.randint(0, len(actor_list)-2)]
+    return random_actor
+
 def main():
     file_name = 'small_text_sample.txt'
     histogram_data = binary_histogram(file_name)
     # print histogram_data
     # print return_random_word(histogram_data)
     random_sentence()
+    print('Yo random Actor: ', random_actor())
     # print weighted_random_word_tuple(histogram_data)
     test_binary_search(histogram_data, 10000)
     # print unique_words(histogram_data)

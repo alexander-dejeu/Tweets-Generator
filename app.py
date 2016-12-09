@@ -7,8 +7,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    word = word_frequency.random_sentence()
-    return render_template('layout.html', name=word)
+    random_sentence = word_frequency.random_sentence()
+    random_actor = word_frequency.random_actor()
+
+    print('random actor = ', random_actor)
+    print('random sentence ', random_sentence)
+    return render_template('layout.html', sentence=random_sentence, actor=random_actor)
     # return word
 
 
