@@ -9,7 +9,7 @@ def main():
     else:
         data_file = open(sys.argv[1], 'r')
         words_list = data_file.read()
-        print words_list
+        # print words_list
 
         matches = re.findall("[A-z]+\'?[A-z]*|\$[0-9]*", words_list)
         for match in matches:

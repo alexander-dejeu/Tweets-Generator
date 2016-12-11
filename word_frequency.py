@@ -274,7 +274,14 @@ def main():
     # print histogram_data
     # print return_random_word(histogram_data)
     random_sentence()
-    print('Yo random Actor: ', random_actor())
+    random_actor2 = random_actor()
+    print('Yo random Actor: ', random_actor2)
+
+    random_actor_cleaned = random_actor2.replace(' ', '')
+    random_actor_cleaned = random_actor_cleaned.replace('\'', '')
+    print('random actor cleaned ', random_actor_cleaned)
+    print "images/"+random_actor_cleaned+".png"
+
     # print weighted_random_word_tuple(histogram_data)
     test_binary_search(histogram_data, 10000)
     # print unique_words(histogram_data)
