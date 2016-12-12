@@ -256,8 +256,8 @@ def random_sentence(data_structure):
     sentence = []
     for i in range(0, 20):
         sentence.append(return_weighted_random_word(data_structure))
-
-    return ' '.join(sentence)
+    sentence[0] = sentence[0].capitalize()
+    return ' '.join(sentence) + '.'
 
 def random_actor():
     file_name = 'SiliconValley_Actors.txt'
