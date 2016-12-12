@@ -25,5 +25,3 @@ def main():
         matches = re.findall("[A-z]+\'?[A-z]*|\$[0-9]*", words_list)
         for match in matches:
             print match
-
-main()

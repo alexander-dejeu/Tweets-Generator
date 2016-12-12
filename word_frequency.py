@@ -252,12 +252,10 @@ def random_word():
     return weighted_random_word_tuple(histogram_data)
 
 
-def random_sentence():
-    file_name = 'SiliconValley.txt'
-    histogram_data = tuple_histogram_sorted(file_name)
+def random_sentence(data_structure):
     sentence = []
     for i in range(0, 20):
-        sentence.append(weighted_random_word_tuple(histogram_data))
+        sentence.append(return_weighted_random_word(data_structure))
 
     return ' '.join(sentence)
 
