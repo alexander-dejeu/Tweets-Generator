@@ -3,6 +3,7 @@ import os
 import word_frequency
 import cleanup
 from word_frequency import Dictogram
+import markov
 
 app = Flask(__name__)
 
@@ -14,10 +15,10 @@ def home():
     cleaned_file = cleanup.clean_file(file_name)
 
     # Create data structure
-    data_structure = Dictogram(cleaned_file)
+    data_structure = markov.make_markov_model(cleaned_file)
 
     # Pass data structure to get random setence
-    random_sentence = word_frequency.random_sentence(data_structure)
+    random_sentence = markov.generate_random_sentence(14, data_structure)
 
     # Get a random actor to say the quote
     random_actor = word_frequency.random_actor()
