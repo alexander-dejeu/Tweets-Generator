@@ -11,12 +11,14 @@ def clean_file(filename):
     matches = re.findall("[A-z]+\'?[A-z]*|\$[0-9]*", words_list)
     for match in matches:
         result_list.append(match)
-    return result_list
+    return ['END'] + result_list
 
 def remove_punctuation(text):
-    no_punc_text = re.sub('[,.()]', '', text)
+    no_punc_text = re.sub('[,()]', '', text)
+    no_punc_text = re.sub('. ', ' END', no_punc_text)
     no_punc_text = re.sub('--', ' ', no_punc_text)
     no_punc_text = re.sub(':', ' ', no_punc_text)
+
     return no_punc_text
 
 def main():

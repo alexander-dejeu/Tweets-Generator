@@ -43,16 +43,6 @@ cleaned_file = cleanup.clean_file(file_name)
 markov_model = make_markov_model(cleaned_file)
 print generate_random_sentence(15, markov_model)
 
-## Hello Alex. Hello John how are you
-## Hello, 1 --> ((Alex, 1) --> Hello),
-##            (((John,1) --> how))
-##           )
-##
-##
-## ( (HEAD, (#, DICTOGRAM))
-## DICTOGRAM has KEYS that are t (Hello , 1) --> None
-##
-
 
 def make_higher_order_markov_model(order, data):
     markov_model = dict()
@@ -99,31 +89,3 @@ cleaned_file = cleanup.clean_file(file_name)
 markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
 # print markov_model_nth
 print generate_random_sentence_n(15, markov_model_nth)
-#
-# markov_window = dict()
-#
-# for i in range(0, len(cleaned_file)-1):
-#     if cleaned_file[i] in markov_model:
-#         # We have to just append to the existing histogram?
-#         markov_window[cleaned_file[i]].update([cleaned_file[i+1]])
-#     else:
-#         markov_window[cleaned_file[i]] = Dictogram([cleaned_file[i+1]])
-#
-# # print markov_model
-#
-# # Get random start word
-# random_start = random.choice(markov_window.keys())
-# # print random_start
-# current_word = random_start
-#
-# sentence = [current_word]
-# for i in range(0, 15):
-#     current_dictogram = markov_window[current_word]
-#     # print current_dictogram
-#     random_weighted_word = current_dictogram.return_weighted_random_word()
-#     current_word =  random_weighted_word
-#     # print 'current word: ' + current_word
-#     sentence.append(current_word)
-#
-# print sentence
-#
