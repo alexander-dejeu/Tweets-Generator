@@ -1,12 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import os
 import word_frequency
 import cleanup
 from word_frequency import Dictogram
 import markov
+import twitter
+
 
 app = Flask(__name__)
 
+@app.route('/tweet', methods=['POST'])
+def tweet():
+    status = request.form['sentence']
+    # status = "hello world!"
+    twitter.tweet(status)
+    return redirect('/')
 
 @app.route('/')
 def home():

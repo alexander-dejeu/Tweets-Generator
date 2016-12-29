@@ -8,6 +8,11 @@
     <div class=quote>
         <h1>{{ sentence }}</h1>
         <h2>~ {{ actor }}</h2>
+        <!-- <blockquote>{{ sentence }}</blockquote> -->
+        <form action="/tweet" method="post">
+            <input type="hidden" name="sentence" value="{{ sentence }}">
+            <button type="submit">Tweet this</button>
+        </form>
     </div>
 </div>
 
