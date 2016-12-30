@@ -23,10 +23,10 @@ def home():
     cleaned_file = cleanup.clean_file(file_name)
 
     # Create data structure
-    data_structure = markov.make_markov_model(cleaned_file)
+    data_structure = make_higher_order_markov_model(3, cleaned_file)
 
     # Pass data structure to get random setence
-    random_sentence = markov.generate_random_sentence(15, data_structure)
+    random_sentence = markov.generate_random_sentence_n(140, data_structure)
 
     # Get a random actor to say the quote
     random_actor = word_frequency.random_actor()
