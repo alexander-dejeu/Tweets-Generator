@@ -12,10 +12,6 @@ import random
 from datetime import datetime
 
 
-# word_list = words_file.reade().strip().split('\n')
-# words_file.readlines()
-
-
 def get_random_int(data_set):
     return random.randint(0, len(data_set)-1)
 

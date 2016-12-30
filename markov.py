@@ -16,9 +16,17 @@ def make_markov_model(data):
             markov_model[data[i]].update([data[i+1]])
         else:
             markov_model[data[i]] = Dictogram([data[i+1]])
+    # print markov_model
     return markov_model
 
 def generate_random_start(model):
+    # To just generate any starting word uncomment line
+    # return random.choice(model.keys())
+
+    # To generate a valid starting word use:
+    if 'END' in model:
+        seed_word = model['END'].return_weighted_random_word()
+        return seed_word
     return random.choice(model.keys())
 
 
@@ -83,8 +91,16 @@ def generate_random_sentence_n(length, markov_model):
     return sentence
 
 
+def get_sentence_starters(file):
+    result = []
+    for i in range(0, len(file)-2):
+        if file[i] == 'END':
+            result.append(file[i+1])
+    return result
+
 file_name = 'SiliconValley.txt'
 cleaned_file = cleanup.clean_file(file_name)
+start_words = get_sentence_starters(cleaned_file)
 
 markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
 # print markov_model_nth

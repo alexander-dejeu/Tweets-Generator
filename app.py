@@ -36,7 +36,7 @@ def home():
     print('random actor cleaned ', random_actor_cleaned)
     print('random sentence ', random_sentence)
 
-    # Render that website <3
+    # Render website <3
     return render_template('layout.html', sentence=random_sentence, actor=random_actor, actor_image=random_actor_cleaned)
 
 
