@@ -2,6 +2,7 @@ import cleanup
 from histograms import Dictogram
 import random
 from collections import deque
+import re
 # import word_frequency
 
 # print cleaned_file
@@ -25,7 +26,9 @@ def generate_random_start(model):
 
     # To generate a valid starting word use:
     if 'END' in model:
-        seed_word = model['END'].return_weighted_random_word()
+        seed_word = 'END'
+        while seed_word == 'END':
+            seed_word = model['END'].return_weighted_random_word()
         return seed_word
     return random.choice(model.keys())
 
@@ -69,14 +72,21 @@ def make_higher_order_markov_model(order, data):
 
 
 def generate_random_sentence_n(length, markov_model):
+    # Length denotes the max amount of chars
+
     current_window = generate_random_start(markov_model)
     sentence = [current_window[0]]
-    # for i in range (0, len(current_window)):
-    #     sentence.append(current_window[i])
+    tweet = ''
+    print "init sentence", sentence
 
-    for i in range(0, length):
-        # print 'THE CURRENT WINDOW', current_window
+    valid_tweet_flag = True
+    sentence_count = 0
+    current_sentence = ""
+    while valid_tweet_flag:
+        # We will generate random sentences until we decide we can not any more
         current_dictogram = markov_model[current_window]
+        current_sentence += current_window[0] + ' '
+        print current_sentence
         # print current_dictogram
         random_weighted_word = current_dictogram.return_weighted_random_word()
         current_window_deque = deque(current_window)
@@ -85,10 +95,64 @@ def generate_random_sentence_n(length, markov_model):
 
         current_window = tuple(current_window_deque)
         sentence.append(current_window[0])
-    sentence = list(sentence)
-    sentence[0] = sentence[0].capitalize()
-    return ' '.join(sentence) + '.'
-    return sentence
+        if sentence[len(sentence)-1] == 'END':
+            sentence_string = ' '.join(sentence)
+            sentence_string = re.sub(' END', '. ', sentence_string, flags=re.IGNORECASE)
+            sentence_string = sentence_string.capitalize()
+
+            new_tweet_len = len(sentence_string) + len(tweet)
+
+            if sentence_count == 0 and new_tweet_len < length:
+                # We should add this sentence to the tweet and move on to
+                # make another
+                tweet += sentence_string
+                sentence_count += 1
+                sentence = []
+                current_sentence = ''
+                current_window = generate_random_start(markov_model)
+            elif sentence_count == 0 and new_tweet_len >= length:
+                # forget the sentence and generate a new one :P
+                sentence = []
+                current_sentence = ''
+                current_window = generate_random_start(markov_model)
+            elif sentence_count > 0 and new_tweet_len < length:
+                # More than one sentence. and length is still less max
+                # Get another new sentence
+                tweet += sentence_string
+                sentence_count += 1
+                sentence = []
+                current_sentence = ''
+                current_window = generate_random_start(markov_model)
+            else:
+                # Return this good good tweet
+                valid_tweet_flag = False
+
+
+
+    # sentence = list(sentence)
+    # sentence[0] = sentence[0].capitalize()
+    # return ' '.join(sentence) + '.'
+    # print 'THE TWEET: ', tweet
+    # print 'length: ', len(tweet)
+    return tweet
+    # for i in range (0, len(current_window)):
+    #     sentence.append(current_window[i])
+
+    # for i in range(0, length):
+    #     # print 'THE CURRENT WINDOW', current_window
+    #     current_dictogram = markov_model[current_window]
+    #     # print current_dictogram
+    #     random_weighted_word = current_dictogram.return_weighted_random_word()
+    #     current_window_deque = deque(current_window)
+    #     current_window_deque.popleft()
+    #     current_window_deque.append(random_weighted_word)
+    #
+    #     current_window = tuple(current_window_deque)
+    #     sentence.append(current_window[0])
+    # sentence = list(sentence)
+    # sentence[0] = sentence[0].capitalize()
+    # return ' '.join(sentence) + '.'
+    # return sentence
 
 
 def get_sentence_starters(file):
@@ -104,4 +168,4 @@ start_words = get_sentence_starters(cleaned_file)
 
 markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
 # print markov_model_nth
-print generate_random_sentence_n(15, markov_model_nth)
+print generate_random_sentence_n(140, markov_model_nth)
