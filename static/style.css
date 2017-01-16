@@ -33,3 +33,43 @@
 .quote h2{
     font-size: 60px;
 }
+
+.tweet {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #48A1ED;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.tweet span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.tweet span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.tweet:hover span {
+  padding-right: 25px;
+}
+
+.tweet:hover span:after {
+  opacity: 1;
+  right: 0;
+}
