@@ -1,4 +1,7 @@
 <!doctype html>
+<head>
+
+</head>
 <title>Silicon Valley</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=box>
@@ -12,8 +15,18 @@
         <form action="/tweet" method="post">
             <input type="hidden" name="sentence" value="{{ sentence }}">
             <button class=tweet type="submit" style="vertical-align:middle">
-              <span> Post Tweet</span>
+              <span>Post Tweet</span>
             </button>
         </form>
+        <a class="linkToAccount" href="https://twitter.com/ReSiliconTweets" target="_blank">See all posted <span class="blue">tweets</span>!</a>
+        <div class="learnMore">
+          <a class="ourStory" href="https://medium.com/@alexdejeu/from-what-is-a-markov-model-to-here-is-how-markov-models-work-1ac5f4629b71" target="_blank">
+          <img src="/static/images/medium.png" alt = "medium" >
+          <p>Learn More</p>
+        </a>
+        </div>
     </div>
+</div>
+<div class="footer">
+Made by <a href="http://alexanderdejeu.com" target="_blank">Alex Dejeu</a> with <span class="heart">❤</span> in San Francisco, California
 </div>

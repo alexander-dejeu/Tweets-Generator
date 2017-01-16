@@ -73,3 +73,42 @@
   opacity: 1;
   right: 0;
 }
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #efefef;
+  text-align: center;
+}
+.footer a{
+  color: blue;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer .heart{
+  color: red;
+}
+.linkToAccount {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.blue {
+  color: #48A1ED;
+}
+.learnMore {
+  position: absolute;
+  right: 20px;
+  bottom: 60px;
+}
+.ourStory p{
+  margin: 0px;
+  margin-top: -20px;
+}
+.ourStory {
+  color: white;
+  text-decoration: none;
+}
