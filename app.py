@@ -12,7 +12,6 @@ app = Flask(__name__)
 @app.route('/tweet', methods=['POST'])
 def tweet():
     status = request.form['sentence']
-    # status = "hello world!"
     twitter.tweet(status)
     return redirect('/')
 
@@ -26,7 +25,7 @@ def home():
     # Create data structure
     data_structure = markov.make_higher_order_markov_model(3, cleaned_file)
 
-    # Pass data structure to get random setence
+    # Pass data structure to get random setence with 140 chars
     random_sentence = markov.generate_random_sentence_n(140, data_structure)
 
     # Get a random actor to say the quote

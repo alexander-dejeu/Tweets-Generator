@@ -26,6 +26,7 @@
     height: 100%;
     text-align: center;
     align-content: center;
+    position: relative;
 }
 .quote h1{
     font-size: 55px;
@@ -101,8 +102,8 @@
 }
 .learnMore {
   position: absolute;
-  right: 20px;
-  bottom: 60px;
+  right: 10px;
+  bottom: 20px;
 }
 .ourStory p{
   margin: 0px;

@@ -27,7 +27,6 @@ def generate_random_start(model):
         seed_word = 'END'
         while seed_word == 'END':
             seed_word = model['END'].return_weighted_random_word()
-            print 'SEED WORD: ', seed_word
         return seed_word
     return random.choice(model.keys())
 
@@ -43,13 +42,6 @@ def generate_random_sentence(length, markov_model):
     sentence[0] = sentence[0].capitalize()
     return ' '.join(sentence) + '.'
     return sentence
-
-
-file_name = 'SiliconValley.txt'
-cleaned_file = cleanup.clean_file(file_name)
-
-markov_model = make_markov_model(cleaned_file)
-print generate_random_sentence(15, markov_model)
 
 
 def make_higher_order_markov_model(order, data):
@@ -74,27 +66,20 @@ def generate_random_sentence_n(length, markov_model):
     current_window = generate_random_start(markov_model)
     sentence = [current_window[0]]
     tweet = ''
-    print "init sentence", sentence
 
     valid_tweet_flag = True
     sentence_count = 0
-    current_sentence = ""
     while valid_tweet_flag:
         # We will generate random sentences until we decide we can not any more
         current_dictogram = markov_model[current_window]
-        current_sentence += current_window[0] + ' '
-        print current_sentence
-        # print current_dictogram
         random_weighted_word = current_dictogram.return_weighted_random_word()
 
         current_window_deque = deque(current_window)
         current_window_deque.popleft()
         current_window_deque.append(random_weighted_word)
-        print 'CURRENT WINDOW:', current_window_deque
         current_window = tuple(current_window_deque)
         sentence.append(current_window[0])
         if sentence[len(sentence)-1] == 'END':
-            print 'SENTENCE AT END: ', sentence
             sentence_string = ' '.join(sentence)
             sentence_string = re.sub(' END', '. ', sentence_string, flags=re.IGNORECASE)
             sentence_string = sentence_string.capitalize()
@@ -106,13 +91,10 @@ def generate_random_sentence_n(length, markov_model):
                 # make another
                 tweet += sentence_string
                 sentence_count += 1
-                current_sentence = ''
                 current_window = generate_random_start(markov_model)
                 sentence = [current_window[0]]
             elif sentence_count == 0 and new_tweet_len >= length:
                 # forget the sentence and generate a new one :P
-                sentence = []
-                current_sentence = ''
                 current_window = generate_random_start(markov_model)
                 sentence = [current_window[0]]
             elif sentence_count > 0 and new_tweet_len < length:
@@ -120,14 +102,11 @@ def generate_random_sentence_n(length, markov_model):
                 # Get another new sentence
                 tweet += sentence_string
                 sentence_count += 1
-                sentence = []
-                current_sentence = ''
                 current_window = generate_random_start(markov_model)
                 sentence = [current_window[0]]
             else:
                 # Return this good good tweet
-                valid_tweet_flag = False
-    return tweet
+                return tweet
 
 
 def get_sentence_starters(file):
@@ -138,10 +117,11 @@ def get_sentence_starters(file):
     return result
 
 
-file_name = 'SiliconValley.txt'
-cleaned_file = cleanup.clean_file(file_name)
-start_words = get_sentence_starters(cleaned_file)
+# Personal Tests - leaving until after code review incase we need to test
+# file_name = 'SiliconValley.txt'
+# cleaned_file = cleanup.clean_file(file_name)
+# start_words = get_sentence_starters(cleaned_file)
 
-markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
+# markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
 # print markov_model_nth
-print generate_random_sentence_n(140, markov_model_nth)
+# print generate_random_sentence_n(140, markov_model_nth)

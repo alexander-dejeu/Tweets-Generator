@@ -88,7 +88,6 @@ def histogram(file_name):
     words_list = data_file.read().split()
     for word in words_list:
         word = word.decode('utf-8').lower().encode('utf-8')
-        # print word
 
     histogram = dict()
 
@@ -114,7 +113,6 @@ def test_weighted_random_word(histogram, times):
     # Slower version according to SO
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
-
     print sorted_results
 
 
