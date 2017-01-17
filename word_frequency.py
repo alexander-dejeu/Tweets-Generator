@@ -1,6 +1,6 @@
-import sys
 import random
 from operator import itemgetter
+
 
 class Dictogram(dict):
     def __init__(self, iterable=None):
@@ -27,7 +27,6 @@ class Dictogram(dict):
         if item in self:
             return self[item]
         return 0
-
 
 
 # *************** HELPERS DICTIONARY *************** #
@@ -64,19 +63,16 @@ def get_token_count(histogram):
 
 def return_weighted_random_word(histogram):
     # Step 1: Get total count of all words in histogram
-    # print histogram
     token_count = get_token_count(histogram)
     type_count = len(histogram.keys())
     # Step 2: Generate random number between 0 and total count - 1
     random_int = random.randint(0, token_count-1)
     index = 0
     list_of_keys = histogram.keys()
-    # print 'the random index is:', random_int
+
     for i in range(0, type_count):
         index += histogram[list_of_keys[i]]
-        # print index
         if(index > random_int):
-            # print list_of_keys[i]
             return list_of_keys[i]
 
 
@@ -132,27 +128,21 @@ def get_token_count_tuple(histogram):
 
 def weighted_random_word_tuple(histogram):
     # Step 1: Get total count of all words in histogram
-    # print histogram
     token_count = get_token_count_tuple(histogram)
     type_count = len(histogram)
     # Step 2: Generate random number between 0 and total count - 1
     random_int = random.randint(0, token_count-1)
     index = 0
-    # print 'the random index is:', random_int
     for i in range(0, type_count):
         index += histogram[i][1]
-        # print index
         if(index > random_int):
-            # print list_of_keys[i]
             return histogram[i][0]
 
 
 # *************** TUPLE HISTOGRAM *************** #
 def tuple_histogram(file_name):
     dict_historgram = histogram(file_name)
-    # print 'dict_historgram:', dict_historgram
     tuple_histogram = dict_historgram.items()
-    # print tuple_histogram
     return tuple_histogram
 
 
@@ -182,8 +172,6 @@ def test_weighted_random_word_tuple(histogram, times):
 
 # *************** BINARY TUPLE HISTOGRAM HELPERS *************** #
 def binary_search(histogram, key_count, current_index, target):
-    # Alex Dog Charlie Bob
-    #  3    6     8    9
     if current_index == 0:
         return histogram[0][0]
 
@@ -201,12 +189,9 @@ def binary_search(histogram, key_count, current_index, target):
     else:
         print 'didnt account for something lamo'
 
-    # if(histogram[histogram_keys[key_count/2] ==  )
-
 
 def binary_search_random_word_tuple(histogram):
     # Step 1: Get total count of all words in histogram
-    # print histogram
     type_count = len(histogram)
     # +1 because it [1] is the index of the furtherest right element
     token_count = histogram[type_count-1][1] + 1
@@ -259,6 +244,7 @@ def random_sentence(data_structure):
     sentence[0] = sentence[0].capitalize()
     return ' '.join(sentence) + '.'
 
+
 def random_actor():
     file_name = 'SiliconValley_Actors.txt'
     data_file = open(file_name, 'r')
@@ -266,11 +252,11 @@ def random_actor():
     random_actor = actor_list[random.randint(0, len(actor_list)-2)]
     return random_actor
 
+
 def main():
     file_name = 'small_text_sample.txt'
     histogram_data = binary_histogram(file_name)
-    # print histogram_data
-    # print return_random_word(histogram_data)
+
     random_sentence()
     random_actor2 = random_actor()
     print('Yo random Actor: ', random_actor2)
@@ -280,10 +266,7 @@ def main():
     print('random actor cleaned ', random_actor_cleaned)
     print "images/"+random_actor_cleaned+".png"
 
-    # print weighted_random_word_tuple(histogram_data)
     test_binary_search(histogram_data, 10000)
-    # print unique_words(histogram_data)
-    # print frequency(histogram_data, 'all')
 
 
 if __name__ == '__main__':
