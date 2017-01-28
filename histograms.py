@@ -3,6 +3,7 @@
 from __future__ import division, print_function
 import random
 
+
 class Dictogram(dict):
     def __init__(self, iterable=None):
         """Initialize this histogram as a new dict; update with given items"""
@@ -46,6 +47,7 @@ class Dictogram(dict):
             if(index > random_int):
                 # print list_of_keys[i]
                 return list_of_keys[i]
+
 
 class Listogram(list):
 
@@ -98,6 +100,7 @@ class Listogram(list):
             if self[index][0] == target:
                 return index
         return None
+
 
 def test_histogram(text_list):
     print('text list:', text_list)

@@ -24,6 +24,7 @@ def home():
 
     # Create data structure
     data_structure = markov.make_higher_order_markov_model(3, cleaned_file)
+    print data_structure
 
     # Pass data structure to get random setence with 140 chars
     random_sentence = markov.generate_random_sentence_n(140, data_structure)

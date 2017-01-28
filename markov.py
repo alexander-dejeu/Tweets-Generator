@@ -1,4 +1,3 @@
-import cleanup
 from histograms import Dictogram
 import random
 from collections import deque
@@ -56,7 +55,6 @@ def make_higher_order_markov_model(order, data):
             markov_model[window].update([data[i+order]])
         else:
             markov_model[window] = Dictogram([data[i+order]])
-
     return markov_model
 
 
@@ -118,10 +116,13 @@ def get_sentence_starters(file):
 
 
 # Personal Tests - leaving until after code review incase we need to test
-# file_name = 'SiliconValley.txt'
-# cleaned_file = cleanup.clean_file(file_name)
-# start_words = get_sentence_starters(cleaned_file)
+import cleanup
+file_name = 'drSeussQuotes.txt'
+cleaned_file = cleanup.clean_file(file_name)
+start_words = get_sentence_starters(cleaned_file)
 
-# markov_model_nth = make_higher_order_markov_model(3, cleaned_file)
-# print markov_model_nth
-# print generate_random_sentence_n(140, markov_model_nth)
+markov_model_nth = make_higher_order_markov_model(1, cleaned_file)
+for key in markov_model_nth:
+    print key, markov_model_nth[key]
+
+print generate_random_sentence_n(140, markov_model_nth)

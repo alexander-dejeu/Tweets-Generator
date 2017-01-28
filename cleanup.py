@@ -17,7 +17,7 @@ def clean_file(filename):
 def remove_punctuation(text):
     no_punc_text = re.sub('[,()]', '', text)
     # Handles all that are not endlines
-    no_punc_text = re.sub('\. +', ' END', no_punc_text)
+    no_punc_text = re.sub('\. +', ' END ', no_punc_text)
     # This does the same as above but also gets new lines and therefore
     # we give an extra space!
     no_punc_text = re.sub('\.\s+', ' END ', no_punc_text)
