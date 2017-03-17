@@ -121,7 +121,7 @@ file_name = 'drSeussQuotes.txt'
 cleaned_file = cleanup.clean_file(file_name)
 start_words = get_sentence_starters(cleaned_file)
 
-markov_model_nth = make_higher_order_markov_model(1, cleaned_file)
+markov_model_nth = make_higher_order_markov_model(2, cleaned_file)
 for key in markov_model_nth:
     print key, markov_model_nth[key]
 
