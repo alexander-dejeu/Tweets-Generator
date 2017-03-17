@@ -116,13 +116,13 @@ def get_sentence_starters(file):
 
 
 # Personal Tests - leaving until after code review incase we need to test
-import cleanup
-file_name = 'drSeussQuotes.txt'
-cleaned_file = cleanup.clean_file(file_name)
-start_words = get_sentence_starters(cleaned_file)
-
-markov_model_nth = make_higher_order_markov_model(2, cleaned_file)
-for key in markov_model_nth:
-    print key, markov_model_nth[key]
-
-print generate_random_sentence_n(140, markov_model_nth)
+# import cleanup
+# file_name = 'drSeussQuotes.txt'
+# cleaned_file = cleanup.clean_file(file_name)
+# start_words = get_sentence_starters(cleaned_file)
+#
+# markov_model_nth = make_higher_order_markov_model(2, cleaned_file)
+# for key in markov_model_nth:
+#     print key, markov_model_nth[key]
+#
+# print generate_random_sentence_n(140, markov_model_nth)
