@@ -70,7 +70,7 @@ class Listogram(list):
     def binary_self(self):
         self.sort_self_linear()
         right_index = -1
-        print self.tokens
+        print(self.tokens)
         for i in range(0, self.types):
             right_index = right_index + self[i][1]
             self[i] = (self[i][0], right_index)
@@ -148,7 +148,7 @@ class Listogram(list):
             new_index = current_index - (key_count - current_index)/2
             return self.binary_search(key_count, new_index, target)
         else:
-            print 'didnt account for something lamo'
+            print('didnt account for something lamo')
 
     def binary_search_random_word_tuple(self):
         # Step 1: Get total count of all words in histogram
@@ -175,7 +175,7 @@ def test_weighted_random_word_tuple(histogram, times):
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
 
-    print sorted_results
+    print(sorted_results)
 
 
 # *************** BINARY TUPLE HISTOGRAM HELPERS *************** #
@@ -202,7 +202,7 @@ def test_binary_search(histogram, times):
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
 
-    print sorted_results
+    print(sorted_results)
 
 
 def test_weighted_random_word(histogram, times):
@@ -219,7 +219,7 @@ def test_weighted_random_word(histogram, times):
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
 
-    print sorted_results
+    print(sorted_results)
 
 
 # *************** BINARY HISTOGRAM *************** #
@@ -274,9 +274,9 @@ print("count time for 100-word histogram: " + str(result))
 words_list = cleanup.clean_file('SiliconValley_Actors.txt')
 
 
-print 'Start creating Dictogram'
+print('Start creating Dictogram')
 dictogram = Dictogram(words_list)
-print 'Time to create Dictogram: ', 'seconds'
+print('Time to create Dictogram: ', 'seconds')
 stmt_dictogram = "dictogram.return_weighted_random_word()"
 setup_dictogram = "from __main__ import dictogram"
 timer_dictogram = timeit.Timer(stmt_dictogram, setup=setup_dictogram)
@@ -286,7 +286,7 @@ print("count time for finding " + str(iterations) + " random weighted words " + 
 
 
 listogram = Listogram(words_list)
-print 'Time to create Listogram: ', 'seconds'
+print('Time to create Listogram: ', 'seconds')
 stmt_listogram = "listogram.weighted_random_word_tuple()"
 setup_listogram = "from __main__ import listogram"
 timer_listogram = timeit.Timer(stmt_listogram, setup=setup_listogram)
@@ -296,7 +296,7 @@ print("count time for finding " + str(iterations) + " random weighted words " + 
 
 listogram_sorted = Listogram(words_list)
 listogram_sorted.sort_self_linear()
-print 'Time to create sorted Listogram: ', 'seconds'
+print('Time to create sorted Listogram: ', 'seconds')
 stmt_listogram_sorted = "listogram_sorted.weighted_random_word_tuple()"
 setup_listogram_sorted = "from __main__ import listogram_sorted"
 timer_listogram_sorted = timeit.Timer(stmt_listogram_sorted, setup=setup_listogram_sorted)
@@ -315,7 +315,7 @@ print("count time for finding " + str(iterations) + " random weighted words " + 
 # print 'Time to create binary searchable Listogram: ', 'seconds'
 
 
-print 'Time to create HashTable: ', 'seconds'
+print('Time to create HashTable: ', 'seconds')
 hashtable = HashTable(words_list)
 stmt_hashtable = "hashtable.length()"
 setup_hashtable = "from __main__ import hashtable"

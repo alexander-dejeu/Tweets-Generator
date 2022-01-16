@@ -56,7 +56,7 @@ class HashTable(object):
         # TODO: Check if the given key exists and return its associated value
         bucket_index = self._bucket_index(key)
         maybe_value = self.buckets[bucket_index].find(lambda x: x[0] == key)
-        print key, maybe_value
+        print(key, maybe_value)
         if maybe_value is not None:
             return maybe_value[1]
         raise (KeyError, 'Key not found')
@@ -72,7 +72,7 @@ class HashTable(object):
         bucket_index = self._bucket_index(key)
         maybe_value = self.buckets[bucket_index].find(lambda x: x[0] == key)
         if maybe_value is not None:
-            print 'THE VALUE IS: ', maybe_value
+            print('THE VALUE IS: ', maybe_value)
             self.delete(key)
         # print maybe_value
         self.buckets[bucket_index].append((key, value))
@@ -85,8 +85,8 @@ class HashTable(object):
         the bucket index and finding the key"""
         # TODO: Find the given key and delete its entry if found
         bucket_index = self._bucket_index(key)
-        print 'bucket', self.buckets[bucket_index]
-        print 'key', key
+        print('bucket', self.buckets[bucket_index])
+        print('key', key)
         self.buckets[bucket_index].delete(key)
         # self.buckets[bucket_index].find(lambda x: x[0] == key)
         # if maybe_delete is not None:
@@ -103,7 +103,7 @@ class HashTable(object):
         all_keys_list = []
         for bucket in self.buckets:
             for item in bucket:
-                print item
+                print(item)
                 all_keys_list.append(item.data[0])
         return all_keys_list
 

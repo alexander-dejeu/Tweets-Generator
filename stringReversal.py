@@ -39,7 +39,7 @@ argument_list = list(sys.argv)
 argument_list.pop(0)
 
 if len(argument_list) == 1:
-    print reverse_word(argument_list[0])
+    print(reverse_word(argument_list[0]))
 else:
-    print reverse_list(argument_list)
+    print(reverse_list(argument_list))
     # for i in argument_lis:

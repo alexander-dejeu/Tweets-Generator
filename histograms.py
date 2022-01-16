@@ -39,7 +39,7 @@ class Dictogram(dict):
         # Step 1: Generate random number between 0 and total count - 1
         random_int = random.randint(0, self.tokens-1)
         index = 0
-        list_of_keys = self.keys()
+        list_of_keys = list(self.keys())
         # print 'the random index is:', random_int
         for i in range(0, self.types):
             index += self[list_of_keys[i]]

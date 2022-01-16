@@ -11,8 +11,8 @@
 import sys
 import random
 
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List:', str(sys.argv)
+print('Number of arguments:', len(sys.argv), 'arguments.')
+print('Argument List:', str(sys.argv))
 
 original_arg_list = sys.argv
 random_order_list = []
@@ -24,4 +24,4 @@ for i in range(1, len(sys.argv)):
     random_order_list.append(original_arg_list[random_num])
     original_arg_list.remove(original_arg_list[random_num])
 
-print random_order_list
+print(random_order_list)

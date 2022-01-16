@@ -53,7 +53,7 @@ def print_trie(trie, prefix):
     for key in current_node:
         if key == _end:
             # print 'we reached the end'
-            print str(word)
+            print(str(word))
         else:
             word = prefix + key
             print_trie(current_node[key], word)
@@ -68,15 +68,15 @@ def main():
     # Do some sort of brute force searching :P
     user_argument_count = len(sys.argv)
     if user_argument_count == 1:
-        print 'Error: word not provided'
+        print('Error: word not provided')
     else:
         user_autocomplete_word = str(sys.argv[1])
         autocomplete_start_time = datetime.now()
-        print autocomplete_for(tree, user_autocomplete_word)
+        print(autocomplete_for(tree, user_autocomplete_word))
         autocomplete_end_time = datetime.now()
         autocomplete_run_time = autocomplete_end_time - autocomplete_start_time
-        print 'Time to create the prefix tree : ', base_run_time
-        print 'Time to find autocomplete in the prefix tree : ', autocomplete_run_time
-        print search_trie_for(tree, user_autocomplete_word)
+        print('Time to create the prefix tree : ', base_run_time)
+        print('Time to find autocomplete in the prefix tree : ', autocomplete_run_time)
+        print(search_trie_for(tree, user_autocomplete_word))
 
 main()

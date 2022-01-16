@@ -113,7 +113,7 @@ def test_weighted_random_word(histogram, times):
     # Slower version according to SO
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
-    print sorted_results
+    print(sorted_results)
 
 
 # *************** HELPERS TUPLE *************** #
@@ -165,7 +165,7 @@ def test_weighted_random_word_tuple(histogram, times):
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
 
-    print sorted_results
+    print(sorted_results)
 
 
 # *************** BINARY TUPLE HISTOGRAM HELPERS *************** #
@@ -185,7 +185,7 @@ def binary_search(histogram, key_count, current_index, target):
         new_index = current_index - (key_count - current_index)/2
         return binary_search(histogram, key_count, new_index, target)
     else:
-        print 'didnt account for something lamo'
+        print('didnt account for something lamo')
 
 
 def binary_search_random_word_tuple(histogram):
@@ -215,7 +215,7 @@ def test_binary_search(histogram, times):
     # sorted_results = sorted(results_tuple, key=lambda x: x[1], reverse=True)
     sorted_results = sorted(results_tuple, key=itemgetter(1), reverse=True)
 
-    print sorted_results
+    print(sorted_results)
 
 
 # *************** BINARY HISTOGRAM *************** #
@@ -262,7 +262,7 @@ def main():
     random_actor_cleaned = random_actor2.replace(' ', '')
     random_actor_cleaned = random_actor_cleaned.replace('\'', '')
     print('random actor cleaned ', random_actor_cleaned)
-    print "images/"+random_actor_cleaned+".png"
+    print("images/"+random_actor_cleaned+".png")
 
     test_binary_search(histogram_data, 10000)
 
