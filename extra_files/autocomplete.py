@@ -35,7 +35,7 @@ def search_trie_for(trie, prefix):
             return True
         else:
             return False
-
+            
 
 def autocomplete_for(trie, prefix):
     current_node = trie
@@ -44,7 +44,6 @@ def autocomplete_for(trie, prefix):
             current_node = current_node[letter]
         else:
             return False
-    # print current_node
     print_trie(current_node, prefix)
 
 
